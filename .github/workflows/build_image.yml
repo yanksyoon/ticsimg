@@ -26,6 +26,5 @@ jobs:
              push: true
              image: ticsimg
              tags: latest
-             registry: ghcr.io
              secrets: |
                       "env=${{ secrets.TICSAUTHTOKEN }}"
