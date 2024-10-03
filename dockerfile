@@ -1,6 +1,8 @@
 # Use an official Ubuntu image
 FROM ubuntu:latest
 
+LABEL org.opencontainers.image.source=https://github.com/canonical/ticsimg
+
 # Set environment variables (DEBIAN_FRONTEND to avoid interactive menus with apt-get)
 ENV DEBIAN_FRONTEND=noninteractive
 
