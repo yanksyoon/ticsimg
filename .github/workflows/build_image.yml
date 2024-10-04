@@ -28,7 +28,3 @@ jobs:
           push: true
           secrets: |
                     "env=${{ secrets.TICSAUTHTOKEN }}"
-          build-args: |
-                       --rm
-                       --force-rm
-
