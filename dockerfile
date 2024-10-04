@@ -31,7 +31,7 @@ USER $UNAME
 WORKDIR /home/$UNAME
 
 # Download and install TiCS
-ENV TICSFSCACHE=/var/tmp/$USER
+ENV TICSFSCACHE=/var/tmp/$UNAME
 RUN curl -o /home/runner/install_tics.sh -l "https://canonical.tiobe.com/tiobeweb/TICS/api/public/v1/fapi/installtics/Script?cfg=default&platform=linux&url=https://canonical.tiobe.com/tiobeweb/TICS/"
 RUN chmod +x /home/runner/install_tics.sh
 # We need to mount the secret with our second user ('runner', first is 'ubuntu')
