@@ -2,8 +2,6 @@ name: TICS image CI
 
 on:
    push:
-     tags:
-       - '*.*.*'
 
 jobs:
    build_and_publish: 
@@ -21,16 +19,12 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.PKGTOKEN }}
-          
-      - name: Extract tag
-        id: extract_tag
-        run: echo "TAG=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
 
       - name: Build and push the app image
         uses: docker/build-push-action@v6
         with:
           context: .
-          tags: ghcr.io/canonical/ticsimg:${{ env.TAG }}
+          tags: ghcr.io/canonical/ticsimg:latest
           push: true
           secrets: |
                     "env=${{ secrets.TICSAUTHTOKEN }}"
