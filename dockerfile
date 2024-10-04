@@ -1,5 +1,5 @@
 # Use an official Ubuntu image
-FROM ubuntu:latest
+FROM  --platform=$BUILDPLATFORM ubuntu:latest
 
 LABEL org.opencontainers.image.source=https://github.com/canonical/ticsimg
 
