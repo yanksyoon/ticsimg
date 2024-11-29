@@ -25,8 +25,9 @@ jobs:
       run: sudo apt-get update
 
     - name: Build the project
-      working-directory: test
-      run: make
+      run: |
+           cd test
+           make
 
     - name: Run TICS analysis with github-action
       uses: tiobe/tics-github-action@v3
