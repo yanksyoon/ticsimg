@@ -1,0 +1,31 @@
+name: TICS run (script)
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    
+    container:
+      image: ghcr.io/canonical/ticsimg:latest
+      credentials:
+        username: ${{ github.actor }}
+        password: ${{ secrets.PKGTOKEN }}
+        
+    steps:
+    - name: Checkout the project
+      uses: actions/checkout@v4
+
+    - name: Install dependencies
+      run: sudo apt-get update
+
+    - name: Run TICS analysis with the script
+      run: |
+           set -x
+           export TICSAUTHTOKEN="${{ secrets.TICSAUTHTOKEN }}"
+           TICSQServer -project testimage -tmpdir /tmp/tics -branchdir "${{ github.workspace }}/test/"
