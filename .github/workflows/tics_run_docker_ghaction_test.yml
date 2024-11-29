@@ -24,6 +24,9 @@ jobs:
     - name: Install dependencies
       run: sudo apt-get update
 
+    - name: Build the project
+      run: test/make
+
     - name: Run TICS analysis with github-action
       uses: tiobe/tics-github-action@v3
       with:
