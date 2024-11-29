@@ -1,4 +1,4 @@
-ame: TICS run docker test (github-action)
+name: TICS run docker test (github-action)
 
 on:
   push:
