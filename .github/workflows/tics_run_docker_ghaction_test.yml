@@ -1,0 +1,35 @@
+ame: TICS run docker test (github-action)
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    
+    container:
+      image: ghcr.io/azkaratea/ticsimg:latest
+      credentials:
+        username: ${{ github.actor }}
+        password: ${{ secrets.PKGTOKEN }}
+        
+    steps:
+    - name: Checkout the project
+      uses: actions/checkout@v4
+
+    - name: Install dependencies
+      run: sudo apt-get update
+
+    - name: Run TICS analysis with github-action
+      uses: tiobe/tics-github-action@v3
+      with:
+        mode: qserver
+        project: testimage
+        branchdir: .test/
+        viewerUrl: https://canonical.tiobe.com/tiobeweb/TICS/api/cfg?name=default
+        ticsAuthToken: ${{ secrets.TICSAUTHTOKEN }}
+        installTics: false
