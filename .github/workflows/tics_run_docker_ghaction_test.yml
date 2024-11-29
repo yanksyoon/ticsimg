@@ -29,11 +29,12 @@ jobs:
       run: make
 
     - name: Run TICS analysis with github-action
+      working-directory: test
       uses: tiobe/tics-github-action@v3
       with:
         mode: qserver
         project: testimage
-        branchdir: test/
+        branchdir: .
         viewerUrl: https://canonical.tiobe.com/tiobeweb/TICS/api/cfg?name=default
         ticsAuthToken: ${{ secrets.TICSAUTHTOKEN }}
         installTics: false
