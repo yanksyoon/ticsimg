@@ -1,4 +1,4 @@
-name: TICS run (script)
+name: TICS run docker test (script)
 
 on:
   push:
