@@ -29,7 +29,6 @@ jobs:
       run: make
 
     - name: Run TICS analysis with github-action
-      working-directory: test
       uses: tiobe/tics-github-action@v3
       with:
         mode: qserver
