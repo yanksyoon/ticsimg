@@ -29,10 +29,13 @@ useradd -m -u $USRID -g $GRPID -o -s /bin/bash $USRNAME
 echo "$USRNAME ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/$USRNAME
 chmod 0440 /etc/sudoers.d/$USRNAME
 
-# Switch to the new user
-sudo -i -u $USRNAME bash << EOF
+echo $TICSAUTHTOKEN;
 
-#export TICSAUTHTOKEN - we need this to be injected to the user environment
+# Switch to the new user
+sudo -i -u $USRNAME -E bash << EOF
+
+export TICSAUTHTOKEN # - we need this to be injected to the user environment
+echo $TICSAUTHTOKEN
 
 # Download and install TiCS
 curl -o /home/$USRNAME/install_tics.sh -L "https://canonical.tiobe.com/tiobeweb/TICS/api/public/v1/fapi/installtics/Script?cfg=default&platform=linux&url=https://canonical.tiobe.com/tiobeweb/TICS/"
@@ -43,3 +46,6 @@ source /home/$USRNAME/.profile
 
 # Run additional TiCS maintenance commands
 TICSMaintenance -checkchk
+EOF
+
+echo "TICS installed successfully"
